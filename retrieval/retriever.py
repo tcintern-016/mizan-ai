@@ -13,7 +13,7 @@ os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
 from dataclasses import dataclass
 from typing import List, Optional
 
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.vectorstores import VectorStoreRetriever
 
@@ -58,7 +58,8 @@ class LawRetriever:
 
     def __init__(self) -> None:
         logger.info(f"Loading embedding model: {settings.embedding_model}")
-        self.embeddings = HuggingFaceEmbeddings(model_name=settings.embedding_model)
+        hf_token = os.environ.get("HUGGINGFACEHUB_API_TOKEN", "") 
+        self.embeddings = HuggingFaceInferenceAPIEmbeddings( api_key=hf_token, model_name=settings.embedding_model, )
 
         self.vectordb = Chroma(
             persist_directory=str(settings.chroma_persist_path),
