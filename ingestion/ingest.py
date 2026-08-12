@@ -22,10 +22,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-    os.environ["USE_TF"] = "0"
 os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
 
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from utils.embeddings import LightweightEmbeddings
 from langchain_chroma import Chroma
 
 from ingestion.loader import load_all_documents
@@ -39,7 +38,7 @@ def get_existing_count() -> int:
     if not settings.chroma_persist_path.exists():
         return 0
     try:
-        embeddings = HuggingFaceEmbeddings(model_name=settings.embedding_model)
+        embeddings = LightweightEmbeddings()
         vectordb = Chroma(
             persist_directory=str(settings.chroma_persist_path),
             embedding_function=embeddings,
@@ -77,7 +76,7 @@ def main(force: bool = False) -> None:
 
     # 3. Embed
     logger.info(f"Loading embedding model: {settings.embedding_model}")
-    embeddings = HuggingFaceEmbeddings(model_name=settings.embedding_model)
+    embeddings = LightweightEmbeddings()
 
     # 4. Store in ChromaDB
     logger.info(f"Storing {len(chunks)} chunks in ChromaDB at {settings.chroma_persist_path} …")
