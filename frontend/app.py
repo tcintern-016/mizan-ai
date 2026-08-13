@@ -54,7 +54,7 @@ def inject_css():
 :root {
     --navy: #0B1220; --navy2: #0D1B2A; --emerald: #14532D;
     --emerald2: #166534; --gold: #B08D57; --white: #F0F4FF;
-    --muted: #8899BB; --card: #101B2D; --border: #22314A; --radius: 14px;
+    --muted: #A8B8D8; --card: #101B2D; --border: #22314A; --radius: 14px;
 }
 html, body, [class*="css"] { font-family: 'Georgia', serif; background-color: var(--navy) !important; color: var(--white) !important; }
 .stApp { background-color: var(--navy) !important; }
@@ -65,10 +65,32 @@ html, body, [class*="css"] { font-family: 'Georgia', serif; background-color: va
     background: var(--card) !important; border: 1px solid var(--border) !important;
     border-radius: var(--radius) !important; color: var(--white) !important; padding: 12px 16px !important;
 }
-.stButton > button {
+.stButton > button, .stDownloadButton > button {
     background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald2) 100%) !important;
     color: white !important; border: none !important; border-radius: var(--radius) !important;
     font-weight: 600 !important; padding: 10px 24px !important;
+}
+.stButton > button:hover, .stDownloadButton > button:hover {
+    filter: brightness(1.15) !important;
+}
+[data-testid="stVerticalBlockBorderWrapper"] {
+    background: var(--card) !important; border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+}
+[data-testid="stMarkdownContainer"], .stMarkdown, .stMarkdown p, .stMarkdown li,
+[data-testid="stChatMessageContent"] p, [data-testid="stText"] {
+    color: var(--white) !important;
+}
+[data-testid="stCaptionContainer"], .stCaption, [data-testid="stCaption"] {
+    color: var(--muted) !important;
+}
+[data-testid="stChatMessage"] {
+    background: var(--card) !important; border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+}
+[data-testid="stExpander"] {
+    background: var(--card) !important; border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
 }
 </style>
 """,
