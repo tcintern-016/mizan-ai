@@ -60,7 +60,7 @@ html, body, [class*="css"] { font-family: 'Georgia', serif; background-color: va
 .stApp { background-color: var(--navy) !important; }
 #MainMenu, footer, header { visibility: hidden; }
 [data-testid="stSidebar"] { background: var(--navy2) !important; border-right: 1px solid var(--border); }
-[data-testid="stSidebar"] * { color: var(--white) !important; }
+[data-testid="stSidebar"] * { color: var(--grey) !important; }
 .stTextInput > div > div > input, .stTextArea > div > div > textarea {
     background: var(--card) !important; border: 1px solid var(--border) !important;
     border-radius: var(--radius) !important; color: var(--white) !important; padding: 12px 16px !important;
